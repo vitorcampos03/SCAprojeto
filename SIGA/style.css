@@ -1,0 +1,111 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background-color: #e7ece3;
+    color: #333;
+    background-image: url('imagens/imagem\ arma.jpg');
+}
+
+header {
+    background-color: #2f3d27;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+header h1 {
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+.caixa {
+    background-color: white;
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 800px;
+    border: 1px solid #ccc;
+}
+
+h1 {
+    color: #2f3d27;
+}
+
+h2 {
+    color: #2f3d27;
+}
+
+img {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 15px auto;
+}
+
+.botao {
+    background-color: #4a6741;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+table {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.status {
+    font-weight: bold;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    max-width: 600px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0 15px 0;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #2f3d27;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+}
+
+footer {
+    background-color: #2f3d27;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
