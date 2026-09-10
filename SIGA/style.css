@@ -4,6 +4,9 @@ body {
     background-color: #e7ece3;
     color: #333;
     background-image: url('imagens/imagem\ arma.jpg');
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -29,6 +32,7 @@ nav a:hover {
 
 main {
     padding: 20px;
+     flex: 1;
 }
 
 .caixa {
