@@ -144,7 +144,30 @@ function initEditar() {
 
 // Executa ao carregar o DOM
 document.addEventListener('DOMContentLoaded', () => {
+  initNavegacao();
   initCadastro();
   initGerenciar();
   initEditar();
 });
+
+// Destaca a página atual e exibe a data no cabeçalho.
+function initNavegacao() {
+  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav a').forEach((link) => {
+    const paginaDoLink = new URL(link.href, window.location.href).pathname.split('/').pop();
+    if (paginaDoLink === paginaAtual) {
+      link.classList.add('pagina-atual');
+      link.setAttribute('aria-current', 'page');
+    }
+  });
+
+  const cabecalho = document.querySelector('header');
+  if (cabecalho && !document.getElementById('data-atual')) {
+    const data = document.createElement('p');
+    data.id = 'data-atual';
+    data.textContent = new Intl.DateTimeFormat('pt-BR', {
+      dateStyle: 'full'
+    }).format(new Date());
+    cabecalho.appendChild(data);
+  }
+}
