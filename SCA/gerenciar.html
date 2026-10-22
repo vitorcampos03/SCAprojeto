@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inventário - SCA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>SCA</h1>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="gerenciar.html">Inventário</a>
+        <a href="escalas.html">Escalas</a>
+        <a href="monitoramento.html">Monitoramento</a>
+        <a href="login.html">Login</a>
+        <a href="cadastro.html">Cadastrar</a>
+    </nav>
+
+</header>
+
+<main>
+
+    <div class="caixa">
+
+        <h2>Inventário de Armamento</h2>
+
+    
+        <p>
+            Consulte, edite e monitore o status de cada equipamento cadastrado.
+        </p>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Modelo</th>
+                    <th>Unidade</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+
+            <tbody id="corpo-inventario"></tbody>
+
+        </table>
+
+        <a class="botao" href="editar.html" style="margin-top: 15px;">
+            + Novo Item
+        </a>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>SCA - Projeto acadêmico</p>
+</footer>
+
+<script src="dados.js"></script>
+<script src="inventario.js"></script>
+
+</body>
+</html>
