@@ -4,7 +4,7 @@ O sistema apresenta uma interface moderna e responsiva, com foco na organizaçã
 
 🚀 Funcionalidades apresentadas
 
- Gerenciamento de armamentos Controle e monitoramento de equipamentos Gestão de escalas de serviço Interface para diferentes instituições de segurança Layout responsivo e moderno 🛠️ Tecnologias utilizadas HTML5 , CSS3  
+ Gerenciamento de armamentos Controle e monitoramento de equipamentos Gestão de escalas de serviço Interface para diferentes instituições de segurança Layout responsivo e moderno 🛠️ Tecnologias utilizadas HTML5 , CSS3 , JS  
 
 🎯 Objetivo
 
