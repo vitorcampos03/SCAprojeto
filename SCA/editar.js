@@ -1,65 +1,69 @@
 // Funcionalidades da página editar.html: criar ou atualizar item do inventário.
-document.addEventListener("DOMContentLoaded", () => {
-  if (!window.location.pathname.endsWith("editar.html")) return;
-
-  garantirInventarioInicial();
-  const form = document.querySelector("form");
+document.addEventListener("DOMContentLoaded", async () => {
+  const form = document.getElementById("form-item");
   if (!form) return;
 
-  const campos = form.querySelectorAll("input, select");
-  const codigo = campos[0];
-  const modelo = campos[1];
-  const unidade = campos[2];
-  const status = campos[3];
-  const parametros = new URLSearchParams(window.location.search);
-  const id = parametros.get("id");
-  let itens = lerDados(SCA_STORAGE.inventario);
-  const itemAtual = id ? itens.find(item => item.id === id) : null;
+  const id = new URLSearchParams(window.location.search).get("id");
+  const campos = {
+    codigo: document.getElementById("codigo"),
+    modelo: document.getElementById("modelo"),
+    unidade: document.getElementById("unidade"),
+    status: document.getElementById("status"),
+  };
 
-  if (itemAtual) {
-    codigo.value = itemAtual.codigo;
-    modelo.value = itemAtual.modelo;
-    unidade.value = itemAtual.unidade;
-    status.value = itemAtual.status;
-  } else if (!id) {
-    // Quando for um novo item, deixa os campos vazios e ajusta os textos da página.
-    const titulo = document.querySelector("h2");
-    if (titulo) titulo.textContent = "Novo Item do Inventário";
-    document.title = "Novo Item - SCA";
-    const botao = form.querySelector("button");
-    if (botao) botao.textContent = "Cadastrar item";
-    codigo.value = "";
-    modelo.value = "";
-    unidade.value = "";
+  // Modo edição: carrega os dados do item
+  if (id) {
+    document.title = "Editar Item - SCA";
+    document.getElementById("titulo").textContent = "Editar Item do Inventário";
+    document.getElementById("subtitulo").textContent = "Atualize os dados do equipamento selecionado.";
+    document.getElementById("botao-salvar").textContent = "Salvar alterações";
+
+    try {
+      const resposta = await fetch(`/api/inventario/${encodeURIComponent(id)}`);
+      if (!resposta.ok) throw new Error();
+      const item = await resposta.json();
+      for (const nome in campos) campos[nome].value = item[nome];
+    } catch {
+      alert("O item solicitado não foi encontrado.");
+      window.location.href = "gerenciar.html";
+      return;
+    }
   } else {
-    alert("O item solicitado não foi encontrado.");
-    window.location.href = "gerenciar.html";
-    return;
+    document.title = "Novo Item - SCA";
+    document.getElementById("botao-salvar").textContent = "Cadastrar item";
   }
 
-  form.addEventListener("submit", evento => {
+  form.addEventListener("submit", async evento => {
     evento.preventDefault();
 
-    if (!codigo.value.trim() || !modelo.value.trim() || !unidade.value.trim()) {
+    const dados = {};
+    for (const nome in campos) dados[nome] = campos[nome].value.trim();
+
+    if (!dados.codigo || !dados.modelo || !dados.unidade) {
       alert("Preencha o código, o modelo e a unidade responsável.");
       return;
     }
 
-    const dadosItem = {
-      codigo: codigo.value.trim(),
-      modelo: modelo.value.trim(),
-      unidade: unidade.value.trim(),
-      status: status.value
-    };
+    const url = id ? `/api/inventario/${encodeURIComponent(id)}` : "/api/inventario";
+    const metodo = id ? "PUT" : "POST";
 
-    if (itemAtual) {
-      itens = itens.map(item => item.id === itemAtual.id ? { ...item, ...dadosItem } : item);
-    } else {
-      itens.push({ id: criarId(), ...dadosItem });
+    try {
+      const resposta = await fetch(url, {
+        method: metodo,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados),
+      });
+
+      if (resposta.ok) {
+        alert(id ? "Item atualizado com sucesso!" : "Item cadastrado com sucesso!");
+        window.location.href = "gerenciar.html";
+        return;
+      }
+
+      const erro = await resposta.json().catch(() => ({}));
+      alert(erro.erro || "Não foi possível salvar o item.");
+    } catch {
+      alert("Erro de conexão com o servidor.");
     }
-
-    salvarDados(SCA_STORAGE.inventario, itens);
-    alert(itemAtual ? "Item atualizado com sucesso!" : "Item cadastrado com sucesso!");
-    window.location.href = "gerenciar.html";
   });
 });

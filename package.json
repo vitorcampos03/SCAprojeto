@@ -1,0 +1,26 @@
+{
+  "name": "scaprojeto",
+  "version": "1.0.0",
+  "description": "O SCA (Sistema de Controle de Armamento) é um projeto desenvolvido para representar uma plataforma de gestão e controle de armamentos voltada a instituições de segurança.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorcampos03/SCAprojeto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vitorcampos03/SCAprojeto/issues"
+  },
+  "homepage": "https://github.com/vitorcampos03/SCAprojeto#readme",
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  }
+}

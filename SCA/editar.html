@@ -28,33 +28,31 @@
 
     <div class="caixa">
 
-        <h2>Editar Item do Inventário</h2>
+        <h2 id="titulo">Novo Item do Inventário</h2>
 
-       
-
-        <p>
-            Atualize os dados do equipamento selecionado.
+        <p id="subtitulo">
+            Preencha os dados do equipamento.
         </p>
 
-        <form>
+        <form id="form-item">
 
-            <label>Código:</label>
-            <input type="text" value="AR-0231">
+            <label for="codigo">Código:</label>
+            <input type="text" id="codigo" required maxlength="30">
 
-            <label>Modelo:</label>
-            <input type="text" value="Fuzil de Assalto - Padrão">
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" required maxlength="100">
 
-            <label>Unidade responsável:</label>
-            <input type="text" value="1º Batalhão">
+            <label for="unidade">Unidade responsável:</label>
+            <input type="text" id="unidade" required maxlength="100">
 
-            <label>Status:</label>
-            <select>
+            <label for="status">Status:</label>
+            <select id="status">
                 <option>Disponível</option>
                 <option>Em uso</option>
                 <option>Manutenção</option>
             </select>
 
-            <button type="submit">Salvar alterações</button>
+            <button type="submit" id="botao-salvar">Salvar</button>
 
         </form>
 
@@ -66,7 +64,6 @@
     <p>SCA - Projeto acadêmico</p>
 </footer>
 
-<script src="dados.js"></script>
 <script src="editar.js"></script>
 
 </body>
